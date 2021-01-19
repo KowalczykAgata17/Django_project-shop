@@ -36,11 +36,9 @@
             {% endif %}
         </ul>
     </div>
-
     <div id="logo">
         <center><a href="{% url 'home'  %}"><img  height="300" src="{% static 'img/Tilia-logo1.PNG' %}" alt="My logo"></a></center>
     </div>
-
     <nav>
       <a href="{% url 'home'  %}">Home</a>
         {% if user.is_authenticated %}
@@ -57,8 +55,8 @@
         {% else %}
             <a href="{% url 'products'  %}">Products</a>
         {% endif %}
-      <a href="{% url 'home'  %}">About us</a>
-      <a href="{% url 'home'  %}">Contact</a>
+      <a href="{% url 'about'  %}">About us</a>
+      <a href="{% url 'contact'  %}">Contact</a>
     </nav>
     <p></p>
     <div id="main">

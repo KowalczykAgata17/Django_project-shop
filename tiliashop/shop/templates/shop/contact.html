@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "shop/base.html" %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}About us{% endblock %}
+
+{% block content %}
+    <h1 style="font-family: 'Brush Script MT', cursive; font-size: 100px; text-align: center;">Contact us</h1>
+    <div style="text-align: center;">
+        <h4>Address:</h4>
+        <p>23 Mary Street Wrocław</p>
+        <h4>Phone:</h4>
+        <p>+48 746 232 444</p>
+        <h4>E-mail:</h4>
+        <p>info@tilia.pl</p>
+        <h4>Opening Hours:</h4>
+        <p>Mon - Sat: 9:00 - 17:00</p>
+        <p>Sunday: Close</p>
+    </div>
+{% endblock %}

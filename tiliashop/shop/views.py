@@ -37,7 +37,6 @@ def products_list(request, category_id=None, ordering=None):
 
 def bestseller_products_list(request):
     products = Product.objects.filter(available=True, bestseller=True)
-
     context = {
         'products': products
     }
@@ -54,10 +53,6 @@ def product_detail(request, product_id):
         'cart_product_form': cart_product_form
     }
     return render(request, 'shop/Products/detail.html', context)
-
-
-def home(request):
-    return render(request, "shop/base.html", {})
 
 
 @login_required(login_url='/login')
@@ -148,3 +143,14 @@ def remove_product(request, product_id):
     messages.info(request, 'Product has been removed')
     return redirect('products')
 
+
+def home(request):
+    return render(request, "shop/base.html", {})
+
+
+def about(request):
+    return render(request, "shop/about.html", {})
+
+
+def contact(request):
+    return render(request, "shop/contact.html", {})

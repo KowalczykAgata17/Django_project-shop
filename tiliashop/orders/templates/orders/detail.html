@@ -1,10 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "shop/base.html" %}
+{% load static %}
 
-</body>
-</html>
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <div class="order-detail">
+        <h1 style="margin-left: 93px;">Order {{ order.id }}</h1>
+        <table>
+            <tr>
+                <th>Created</th>
+                <td>{{order.created}}</td>
+            </tr>
+            <tr>
+                <th>Customer</th>
+                <td>{{ order.first_name }} {{ order.last_name }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ order.address }},
+                    {{ order.postal_code }} {{ order.city }}
+                </td>
+            </tr>
+            <tr>
+                <th>Total</th>
+                <td>{{ order.get_total_cost }} zł</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ order.get_status_display }}</td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <div class="module">
+      <h2 style="margin-left: 93px;">Items bought</h2>
+      <table style="width:90%">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in order.items.all %}
+            <tr class="row{% cycle '1' '2' %}">
+              <td>{{ item.product.name }}</td>
+              <td class="num">${{ item.price }}</td>
+              <td class="num">{{ item.quantity }}</td>
+              <td class="num">${{ item.get_cost }}</td>
+            </tr>
+          {% endfor %}
+          <tr class="total">
+            <td colspan="3">Total</td>
+            <td class="num">${{ order.get_total_cost }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br><br>
+    <div>
+        <center><button type="button" class="btn btn-warning"><a href="{% url 'orders:edit_order' order.id %}">Edit</a></button></center>
+    </div>
+    {% endif %}
+{% endblock %}

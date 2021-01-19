@@ -30,7 +30,6 @@ class Cart:
             self.save()
 
     def save(self):
-        #self.session[settings.CART_SESSION_ID] = self.cart
         self.session.modified = True # This tells Django that the session has changed and needs to be saved.
 
     def clear(self):
@@ -46,7 +45,6 @@ class Cart:
 
     def __iter__(self):
         product_ids = self.cart.keys()
-        # get the product objects and add them to the cart
         products = Product.objects.filter(id__in=product_ids)
         for product in products:
             self.cart[str(product.id)]['product'] = product

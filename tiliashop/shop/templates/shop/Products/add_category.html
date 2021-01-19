@@ -5,6 +5,5 @@
     <form method="POST" class="form-group" enctype="multipart/form-data">{% csrf_token %}
         {{ form.as_p }}
         <button name="save", type="submit", class="btn btn-success">Create</button>
-
     </form>
 {% endblock %}
