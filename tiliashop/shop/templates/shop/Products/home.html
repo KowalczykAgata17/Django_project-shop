@@ -1,0 +1,24 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <div class="product-list">
+        <h1 style="font-family: 'Brush Script MT', cursive; font-size: 100px;">Our bestsellers </h1>
+        <br><br>
+        {% for product in products %}
+            <div class="item">
+                <a href="{% url 'product_detail' product.id %}">
+                    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+                </a>
+                <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a><br>
+                {{ product.price }} zł
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

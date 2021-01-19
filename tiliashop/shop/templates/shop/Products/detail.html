@@ -1,0 +1,28 @@
+{% extends "shop/base.html" %}
+{% load static %}
+
+{% block title %}
+    {{ product.name }}
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="product_options">
+            <button type="button" class="btn btn-warning"><a href="{% url 'edit_product' product.id %}">Edit</a></button>
+            <button type="button" class="btn btn-danger"><a href="{% url 'remove_product' product.id %}">Remove</a></button>
+        </div>
+    {% endif %}
+    <div class="product-detail">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+        <h1>{{ product.name }}</h1>
+        <h2><a href="{% url 'products_by_category' product.category.id%}">{{ product.category }}</a></h2>
+        <p class="price">{{ product.price }} zł</p>
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+          {{ cart_product_form }}
+          {% csrf_token %}
+          <input type="submit" value="Add to cart">
+        </form>
+        {{ product.description|linebreaks }}
+
+    </div>
+{% endblock %}
