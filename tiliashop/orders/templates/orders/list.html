@@ -2,21 +2,21 @@
 {% load static %}
 
 {% block title %}
-    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+    {% if category %}{{ category.name }}{% else %}Produkty{% endif %}
 {% endblock %}
 
 
 {% block content %}
-    <h1 style="margin-left: 93px;">Orders </h1>
+    <h1 style="margin-left: 93px;">Zamówienia </h1>
     <table class="cart">
       <thead>
         <tr>
           <th>Id</th>
-          <th>First name</th>
-          <th>Last Name</th>
-          <th>Total price</th>
+          <th>Imię</th>
+          <th>Nazwisko</th>
+          <th>Całkowita kwota</th>
           <th>Status</th>
-          <th >Created</th>
+          <th>Utworzone</th>
         </tr>
       </thead>
       <tbody>

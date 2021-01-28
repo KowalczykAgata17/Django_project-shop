@@ -1,10 +1,10 @@
 {% extends "shop/base.html" %}
 
 {% block content %}
-    <h2>Edit product</h2><br>
+    <h2>Edytuj produkt</h2><br>
     <form method="POST" class="form-group" enctype="multipart/form-data">{% csrf_token %}
         {{ form.as_p }}
-        <button name="save", type="submit", class="btn btn-success">Edit</button>
+        <button name="save", type="submit", class="btn btn-success">Edytuj</button>
     <br><br>
     </form>
 {% endblock %}

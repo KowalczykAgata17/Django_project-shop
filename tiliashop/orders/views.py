@@ -1,9 +1,15 @@
+#import weasyprint
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
+from django.template.loader import render_to_string
+
 from .models import OrderItem, Order
 from .forms import CreateOrderForm, EditOrderForm
 from cart.cart import Cart
+
 
 
 def create_order(request):
@@ -16,6 +22,7 @@ def create_order(request):
                 OrderItem.objects.create(order=order, product=item['product'],
                                          price=item['price'], quantity=item['quantity'])
             cart.clear()
+            messages.info(request, 'Zamówienie zostało złożone')
             return render(request, 'orders/created_order.html', {'order': order})
     else:
         form = CreateOrderForm()
@@ -39,11 +46,11 @@ def edit_order(request, order_id):
         if form.is_valid():
             order = form.save(commit=False)
             order.save()
-            messages.info(request, 'Order has been changed')
+            messages.info(request, 'Zamówienie zostało zmienione')
             return redirect('orders:order_detail', order_id=order.id)
     else:
         form = EditOrderForm(instance=order)
-    return render(request, 'orders/edit_order.html', {'form': form})
+    return render(request, 'orders/edit_order.html', {'form': form, 'order': order})
 
 
 @login_required(login_url='/login')
@@ -53,4 +60,3 @@ def orders_list(request):
         'orders': orders
     }
     return render(request, 'orders/list.html', context)
-

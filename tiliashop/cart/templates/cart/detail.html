@@ -1,20 +1,20 @@
 {% extends "shop/base.html" %}
 {% load static %}
 
-{% block title %}Cart details{% endblock %}
+{% block title %}Szczegóły Twojego koszyka{% endblock %}
 
 {% block content %}
-    <h1 style="margin-left: 80px;">Your shopping cart</h1>
+    <h1 style="margin-left: 80px;">Twój koszyk</h1>
     <br>
     <table class="cart">
       <thead>
         <tr>
-          <th>Image</th>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Remove</th>
-          <th>Unit price</th>
-          <th>Price</th>
+          <th>Zdjęcie</th>
+          <th>Produkt</th>
+          <th>Ilość</th>
+          <th>Usuń z koszyka</th>
+          <th>Cena jednostkowa</th>
+          <th>Cena całkowita</th>
         </tr>
       </thead>
       <tbody>
@@ -43,12 +43,13 @@
         <tr class="total">
           <td>Total</td>
           <td colspan="4"></td>
-          <td class="num">${{ cart.get_total_price }}</td>
+          <td class="num">{{ cart.get_total_price }} zł</td>
         </tr>
       </tbody>
     </table>
-    <p class="text-right" style="margin-left: 80px;">
-      <a href="{% url 'products' %}" class="button  light">Continue shopping</a>
-      <a href="{% url 'orders:create_order' %}" class="button">Checkout</a>
-    </p>
+    <div class="text-right" style="margin-left: 80px;">
+      <button type="button" class="btn btn-outline-dark"><a href="{% url 'products' %}">Kontynuuj zakupy</a></button>
+      <button type="button" class="btn btn-outline-dark"><a href="{% url 'orders:create_order' %}" class="button">Złóż zamówienie</a></button>
+
+    </div>
 {% endblock %}

@@ -89,6 +89,7 @@ def add_new_product(request):
         if form.is_valid():
             product = form.save(commit=False)
             product.save()
+            messages.info(request, 'Produkt został dodany')
             return redirect('product_detail', product_id=product.id)
     else:
         form = AddProduct()
@@ -102,6 +103,7 @@ def add_new_category(request):
         if form.is_valid():
             category = form.save(commit=False)
             category.save()
+            messages.info(request, 'Kategoria została dodana')
             return redirect('products_by_category', category_id=category.id)
     else:
         form = AddCategory()
@@ -115,6 +117,7 @@ def add_new_manufacturer(request):
         if form.is_valid():
             manufacturer = form.save(commit=False)
             manufacturer.save()
+            messages.info(request, 'Producent został dodany')
             return redirect('products')
     else:
         form = AddManufacturer()
@@ -129,7 +132,7 @@ def edit_product(request, product_id):
         if form.is_valid():
             product = form.save(commit=False)
             product.save()
-            messages.info(request, 'Product has been changed')
+            messages.info(request, 'Produkt został zmieniony')
             return redirect('product_detail', product_id=product.id)
     else:
         form = AddProduct(instance=product)
@@ -140,7 +143,7 @@ def edit_product(request, product_id):
 def remove_product(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     product.delete()
-    messages.info(request, 'Product has been removed')
+    messages.info(request, 'Produkt został usunięty')
     return redirect('products')
 
 

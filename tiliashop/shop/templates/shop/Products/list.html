@@ -2,16 +2,16 @@
 {% load static %}
 
 {% block title %}
-    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+    {% if category %}{{ category.name }}{% else %}Produkty{% endif %}
 {% endblock %}
 
 
 {% block content %}
     <div class="sidebar">
-        <h1>Categories</h1>
+        <h2>Kategorie</h2>
         <ul>
             <li {% if not category %}class="selected"{% endif %} style="margin-top:30px;">
-                <a href="{% url 'products'  %}">All</a>
+                <a href="{% url 'products'  %}">Wszystkie</a>
             </li>
         {% for c in categories %}
             <li {% if category.id == c.id %}class="selected"{% endif %}>
@@ -21,25 +21,25 @@
         </ul>
     </div>
     <div class="product-list">
-        <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
+        <h2>{% if category %}{{ category.name }}{% else %}Produkty{% endif %}</h2>
         {% if user.is_authenticated %}
             <div class="dropdown">
-              <button class="dropbtn">Sort by</button>
+              <button class="dropbtn">Sortuj</button>
               <div class="dropdown-content">
                 <a href="{% url 'products_all' 1 %}">A-Z</a>
                 <a href="{% url 'products_all' 2 %}">Z-A</a>
-                <a href="{% url 'products_all' 3 %}">Lowest Price</a>
-                <a href="{% url 'products_all' 4 %}">Highest Price</a>
+                <a href="{% url 'products_all' 3 %}">Cena rosnąco</a>
+                <a href="{% url 'products_all' 4 %}">Cena malejąco</a>
               </div>
             </div>
         {% else %}
         <div class="dropdown">
-          <button class="dropbtn">Sort by</button>
+          <button class="dropbtn">Sortuj</button>
           <div class="dropdown-content">
             <a href="{% url 'products' 1 %}">A-Z</a>
             <a href="{% url 'products' 2 %}">Z-A</a>
-            <a href="{% url 'products' 3 %}">Lowest Price</a>
-            <a href="{% url 'products' 4 %}">Highest Price</a>
+            <a href="{% url 'products' 3 %}">Cena rosnąco</a>
+            <a href="{% url 'products' 4 %}">Cena malejąco</a>
           </div>
         </div>
         {% endif %}

@@ -2,19 +2,20 @@
 {% load static %}
 
 {% block title %}
-    {% if category %}{{ category.name }}{% else %}Products{% endif %}
+    {% if category %}{{ category.name }}{% else %}Produkty{% endif %}
 {% endblock %}
 
 
 {% block content %}
-    <div class="product-list" style="width: 80%; margin-left: auto; margin-right: auto;">
-        <h1 style="font-family: 'Brush Script MT', cursive; font-size: 100px;">Our bestsellers </h1>
+    <div class="product-list" style="width: 100%; margin-left: auto; margin-right: auto;">
+        <h1 style="font-family: 'Brush Script MT', cursive; font-size: 80px;">Nasze bestsellery</h1>
         <br><br>
         {% for product in products %}
             <div class="item">
                 <a href="{% url 'product_detail' product.id %}">
                     <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
                 </a>
+                <br>
                 <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a><br>
                 {{ product.price }} zł
             </div>

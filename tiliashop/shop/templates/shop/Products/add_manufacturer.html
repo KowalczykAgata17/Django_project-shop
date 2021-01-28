@@ -1,10 +1,10 @@
 {% extends "shop/base.html" %}
 {% load static %}
 {% block content %}
-    <h2 style="margin-left:285px;">Add new manufacturer</h2><br>
+    <h2 style="margin-left:285px;">Dodaj nowego producenta</h2><br>
     <form method="POST" class="form-group" enctype="multipart/form-data">{% csrf_token %}
         {{ form.as_p }}
-        <button name="save", type="submit", class="btn btn-success">Create</button>
+        <button name="save", type="submit", class="btn btn-success">Dodaj</button>
 
     </form>
 {% endblock %}
